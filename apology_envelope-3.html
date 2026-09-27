@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>တောင်းပန်စာအိတ်လေး 💌</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap');
+
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:'Noto Sans Myanmar',sans-serif}
+body{
+  overflow-x:hidden;
+  background:linear-gradient(145deg,#fff5f8,#fbe9ef 45%,#f7e0e8);
+  color:#573640;
+}
+.bg-hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.heart{
+  position:absolute;bottom:-50px;
+  color:#d98da5;opacity:.16;font-size:20px;
+  animation:floatUp linear infinite;
+}
+.heart::before{content:"P"}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(-8deg);opacity:0}
+  15%{opacity:.17}
+  85%{opacity:.17}
+  100%{transform:translateY(-115vh) rotate(15deg);opacity:0}
+}
+.wrap{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+  padding:28px 16px 45px;
+}
+.title{
+  text-align:center;margin:4px 0 8px;
+  font-size:20px;font-weight:600;color:#69414d;
+}
+.meme{
+  font-size:27px;margin-bottom:16px;
+  filter:drop-shadow(0 4px 8px rgba(100,50,60,.12));
+}
+.envelope-area{position:relative;width:min(92vw,410px);height:430px;display:flex;align-items:center;justify-content:center}
+.envelope{
+  position:relative;width:340px;height:235px;
+  cursor:pointer;perspective:1000px;
+  filter:drop-shadow(0 18px 25px rgba(90,40,55,.18));
+}
+.env-back{
+  position:absolute;inset:0;border-radius:14px;
+  background:linear-gradient(145deg,#eab1c4,#d989a4);
+}
+.env-back:after{
+  content:"";position:absolute;inset:12px;
+  border:1px solid rgba(255,255,255,.5);border-radius:10px;
+}
+.flap{
+  position:absolute;z-index:5;left:0;top:0;width:0;height:0;
+  border-left:170px solid transparent;border-right:170px solid transparent;
+  border-top:125px solid #f1b9ca;
+  transform-origin:top center;
+  transition:transform 1s cubic-bezier(.2,.8,.2,1),z-index .2s;
+}
+.left,.right,.bottom{
+  position:absolute;z-index:4;
+  background:#df9ab1;
+}
+.left{left:0;bottom:0;border-top:118px solid transparent;border-bottom:0;border-left:170px solid #d98ca5;border-right:0;width:0;height:0}
+.right{right:0;bottom:0;border-top:118px solid transparent;border-right:170px solid #d98ca5;width:0;height:0}
+.bottom{
+  left:0;bottom:0;width:0;height:0;
+  border-left:170px solid transparent;border-right:170px solid transparent;
+  border-bottom:125px solid #e5a4b9;
+  z-index:6;
+}
+.paper{
+  position:absolute;z-index:3;left:50%;top:20px;
+  transform:translateX(-50%) translateY(0);
+  width:min(310px,84vw);height:min(570px,68vh);min-height:0;
+  overflow-y:auto;
+  background:#fffdfc;border-radius:8px;
+  padding:23px 21px 24px;
+  box-shadow:0 8px 20px rgba(80,35,45,.13);
+  opacity:0;transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .55s;
+  pointer-events:none;
+}
+.paper:before{
+  content:"";position:absolute;inset:8px;
+  border:1px solid #efd5dc;border-radius:5px;pointer-events:none;
+}
+.paper-content{position:relative;z-index:1}
+.paper p{margin:0 0 13px;line-height:1.9;font-size:14px;text-align:left}
+.signature{
+  text-align:right!important;margin-top:18px!important;
+  font-family:'Great Vibes',cursive!important;
+  font-size:27px!important;color:#a55c76!important;
+}
+.opened .flap{
+  transform:rotateX(180deg);
+  z-index:2;
+}
+.opened .paper{
+  transform:translateX(-50%) translateY(-285px);
+  opacity:1;
+  z-index:8;
+}
+.opened .open-btn{
+  opacity:0;
+  pointer-events:none;
+  transform:translateX(-50%) scale(.85);
+}
+.opened .bottom{
+  z-index:3;
+}
+.open-btn{
+  position:absolute;bottom:12px;left:50%;transform:translateX(-50%);
+  z-index:10;border:0;border-radius:999px;
+  padding:13px 25px;font-family:'Noto Sans Myanmar',sans-serif;
+  font-size:15px;font-weight:600;color:white;
+  background:linear-gradient(135deg,#c96f8d,#a95170);
+  box-shadow:0 8px 18px rgba(130,60,80,.24);
+  cursor:pointer;transition:.2s;
+}
+.open-btn:active{transform:translateX(-50%) scale(.96)}
+.open-btn{transition:opacity .35s, transform .35s, background .2s}
+.hint{font-size:12px;color:#9b6c79;margin-top:4px}
+.credit{
+  margin-top:18px;font-family:'Great Vibes',cursive;
+  font-size:31px;color:#9d5871;
+}
+@media(max-width:380px){
+  .envelope{transform:scale(.9)}
+  .envelope-area{height:475px}
+  .paper{width:84vw;height:min(560px,66vh)}
+  .opened .paper{transform:translateX(-50%) translateY(-275px)}
+}
+</style>
+</head>
+<body>
+<div class="bg-hearts" id="hearts"></div>
+
+<main class="wrap">
+  <div class="title">ကိုကို့သဲလေးကိုပြောစရာလေးရှိလို့ပါ...🥺</div>
+  <div class="meme">🥺💔</div>
+
+  <div class="envelope-area">
+    <div class="envelope" id="envelope" aria-label="စာအိတ်ဖွင့်ရန်">
+      <div class="env-back"></div>
+
+      <article class="paper">
+        <div class="paper-content">
+          <p>သဲလေးရေ… အကို တောင်းပန်ပါတယ်နော်။ အရာရာတိုင်းအတွက်၊ အကို့ကြောင့် စိတ်ညစ်ခဲ့ရတာတွေအတွက်၊ အကို စိတ်လွတ်လက်လွတ် ပြောခဲ့မိတဲ့ စကားတွေအတွက် အားလုံးကို တောင်းပန်ပါတယ်။</p>
+
+          <p>အကို ဟိုတစ်ခါက ပြောခဲ့တဲ့ “နင်တွေ၊ ငါတွေ” နဲ့ ပြောခဲ့တာတွေအတွက်ရော၊ “ညမစိတ်နဲ့ မနှိုင်းနဲ့” လို့ ပြောခဲ့မိတာတွေအတွက်ရော တောင်းပန်ပါတယ်။ အဲ့ဒီစကားတွေက အကို့စိတ်ထဲက တကယ်ပြောချင်တဲ့စကားတွေ မဟုတ်ပါဘူး။ အကို့ဒေါသက အကို့ကို အဲ့လိုပြောစေမိလိုက်တာပါ။ 😞</p>
+
+          <p>အကို စိတ်ထဲမှာ ဒေါသတွေနဲ့မို့ ပြောလိုက်မိတာပါ။ အကို နောက်အဲ့လိုမျိုး မပြောတော့ဘူးနော်။ 🥺</p>
+
+          <p>အကို ပြောခဲ့မိတဲ့ စကားတွေအတွက် အမြဲတောင်းပန်ချင်နေတာပါ။ အကို ညမကို အဲ့လိုတွေ ပြောခဲ့မိလို့ အကို့ကိုယ်အကိုလည်း မုန်းမိတယ်။</p>
+
+          <p>အကို ပြောခဲ့မိတာတွေအတွက် ဝမ်းမနည်းတော့နဲ့နော်။ အကို့ကြောင့် “သဲ” ကို ဘာအကြောင်းလေးနဲ့မှ ဒုက္ခမရောက်စေချင်ဘူး၊ စိတ်ညစ်တာလည်း မလိုချင်ဘူး။ ညမကို အမြဲပြုံးပြီး ပျော်ရွှင်နေတာပဲ မြင်ချင်တာ။</p>
+
+          <p>တစ်ခုခုဆို အကို့ကို ပြောနော်။ ပျော်စရာပဲဖြစ်ဖြစ်၊ စိတ်ညစ်တာပဲဖြစ်ဖြစ် အကို့ကို ပြောနော်။</p>
+
+          <p>လိမ္မာအောင် နေနော်။ “အရမ်းချစ်တယ်” ဆိုတာ မမေ့နဲ့နော်။ 💗</p>
+          <p>အရမ်းချစ်တယ်ဆိုတာ မမေ့နဲ့နော်။</p>
+
+          <p class="signature">With Love,<br>Si Thu Win</p>
+        </div>
+      </article>
+
+      <div class="flap"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="bottom"></div>
+
+      <button class="open-btn" id="openBtn">ဖွင့်ကြည့်ပါ. 💞</button>
+    </div>
+  </div>
+
+  <div class="hint">စာအိတ်ကို ဖွင့်ပြီး စာလေးဖတ်ကြည့်နော် 💗</div>
+  <div class="credit">Si Thu Win &amp; Poe Ei Phyu</div>
+</main>
+
+<script>
+const envelope=document.getElementById('envelope');
+const btn=document.getElementById('openBtn');
+
+btn.addEventListener('click',()=>{
+  envelope.classList.toggle('opened');
+  btn.textContent=envelope.classList.contains('opened') ? 'ပိတ်ထားမယ်. 💗' : 'ဖွင့်ကြည့်ပါ. 💞';
+});
+
+const hearts=document.getElementById('hearts');
+for(let i=0;i<42;i++){
+  const h=document.createElement('span');
+  h.className='heart';
+  h.style.left=Math.random()*100+'%';
+  h.style.fontSize=(12+Math.random()*13)+'px';
+  h.style.animationDuration=(8+Math.random()*10)+'s';
+  h.style.animationDelay=(-Math.random()*16)+'s';
+  hearts.appendChild(h);
+}
+</script>
+</body>
+</html>
